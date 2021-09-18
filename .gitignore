@@ -1,0 +1,9 @@
+
+\.env
+
+\.idea/workspace\.xml
+
+\.env\.example
+
+# Project exclude paths
+/node_modules/
