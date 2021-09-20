@@ -132,7 +132,7 @@
     </div>
 
     <!-- Hero -->
-    <div id="hero" class="single-page section" style="background-image: url('images/copertina_4.jpg')">
+    <div id="hero" class="single-page section" style="background-image: url('../progetto-tdw-laravel-master/images/copertina_4.jpg')">
 
         <!-- Content -->
         <div class="container">
