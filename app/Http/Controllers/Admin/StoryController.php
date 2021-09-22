@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\StoryModel;
-use Lang;
-use Config;
-use Storage;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 class StoryController extends Controller
 {
