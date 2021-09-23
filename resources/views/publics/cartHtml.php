@@ -3,6 +3,7 @@
         <a href="javascript:void(0);" class="close-me" onclick="closeFastCartView()"><i class="fa fa-times" aria-hidden="true"></i></a>
         <ul>
             <?php
+            $products = $cartProduct = 0;
             foreach ($products as $cartProduct) {
                 $sum += $cartProduct->num_added * (float) $cartProduct->price;
                 ?>

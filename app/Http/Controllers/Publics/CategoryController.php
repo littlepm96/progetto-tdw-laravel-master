@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Publics\HomeModel;
 use App\Models\Publics\ProductsModel;
-use Lang;
+use Illuminate\Support\Facades\Lang;
 
 class CategoryController extends Controller
 {

@@ -33,8 +33,8 @@
                 <div class="products-for-checkout">
                     @foreach($cartProducts as $cartProduct)
                         @php
-                            $sum_total += $cartProduct->num_added * (float)$cartProduct->price;
-                            $sum = $cartProduct->num_added * (float)$cartProduct->price;
+                            $sum_total += $cartProduct->num_added * (double)$cartProduct->price;
+                            $sum = $cartProduct->num_added * (double)$cartProduct->price;
                         @endphp
                         <div class="row item">
 
