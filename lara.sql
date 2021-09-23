@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 12, 2019 alle 19:45
--- Versione del server: 10.1.38-MariaDB
--- Versione PHP: 7.3.3
+-- Creato il: Set 23, 2021 alle 11:54
+-- Versione del server: 10.4.21-MariaDB
+-- Versione PHP: 7.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `lara`
 --
-CREATE DATABASE IF NOT EXISTS `lara` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `lara`;
 
 -- --------------------------------------------------------
 
@@ -34,7 +31,7 @@ CREATE TABLE `blog` (
   `post_id` int(11) NOT NULL,
   `post_title` varchar(255) NOT NULL,
   `post_content` text NOT NULL,
-  `post_user_id` varchar(60) NOT NULL,
+  `post_user_id` int(11) NOT NULL,
   `post_date` varchar(255) NOT NULL,
   `post_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -44,8 +41,8 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`post_id`, `post_title`, `post_content`, `post_user_id`, `post_date`, `post_url`) VALUES
-(16, 'The new site', 'The new site is online!', '1', '2019-09-12', 'The-new-site'),
-(17, 'Oktoberfest', 'Oktoberfest is coming, stay updated on our site!', '1', '2019-09-12', 'Oktoberfest');
+(16, 'The new site', 'The new site is online!', 1, '2019-09-12', 'The-new-site'),
+(17, 'Oktoberfest', 'Oktoberfest is coming, stay updated on our site!', 1, '2019-09-12', 'Oktoberfest');
 
 -- --------------------------------------------------------
 
@@ -55,7 +52,7 @@ INSERT INTO `blog` (`post_id`, `post_title`, `post_content`, `post_user_id`, `po
 
 CREATE TABLE `carousel` (
   `id` int(11) NOT NULL,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `position` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,7 +72,7 @@ INSERT INTO `carousel` (`id`, `position`, `link`) VALUES
 
 CREATE TABLE `carousel_info` (
   `id` int(11) NOT NULL,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `position` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,6 +82,7 @@ CREATE TABLE `carousel_info` (
 
 INSERT INTO `carousel_info` (`id`, `position`, `link`) VALUES
 (1, 1, ''),
+(2, 1, ''),
 (3, 1, '');
 
 -- --------------------------------------------------------
@@ -95,7 +93,7 @@ INSERT INTO `carousel_info` (`id`, `position`, `link`) VALUES
 
 CREATE TABLE `carousel_translations` (
   `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL,
+  `for_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `title1` varchar(150) NOT NULL,
@@ -118,7 +116,7 @@ INSERT INTO `carousel_translations` (`id`, `for_id`, `image`, `locale`, `title1`
 
 CREATE TABLE `carousel_translations_info` (
   `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL,
+  `for_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `title1` varchar(150) NOT NULL,
@@ -165,7 +163,7 @@ INSERT INTO `categories` (`id`, `parent`, `position`, `url`) VALUES
 
 CREATE TABLE `categories_translations` (
   `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL,
+  `for_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `locale` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -245,8 +243,8 @@ CREATE TABLE `fast_orders` (
   `id` int(11) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `names` varchar(100) NOT NULL,
-  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(4) NOT NULL DEFAULT '0'
+  `time_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -266,9 +264,8 @@ CREATE TABLE `favorites` (
 --
 
 INSERT INTO `favorites` (`id`, `id_product`, `id_user`) VALUES
-(1, 12, 1),
-(3, 19, 3),
-(4, 32, 1);
+(2, 32, 1),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -300,7 +297,7 @@ CREATE TABLE `img_user` (
 
 INSERT INTO `img_user` (`id_img_user`, `id_user`, `directory`) VALUES
 (1, 1, 'img_user/XqlJuB5WXp8UEfW8686rWFlRhuVrlt33BN00YYDa.png'),
-(2, 4, 'img_user/GqgHptF1aPszFlYbxWln1E6SNRhlSgiy8JD0RKbR.png');
+(2, 1, 'profile.png');
 
 -- --------------------------------------------------------
 
@@ -323,10 +320,10 @@ CREATE TABLE `newsletters` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `type` varchar(30) NOT NULL,
   `products` varchar(255) NOT NULL COMMENT 'serialized array',
-  `status` tinyint(4) NOT NULL DEFAULT '0'
+  `status` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -334,7 +331,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `order_id`, `time_created`, `type`, `products`, `status`) VALUES
-(1, 1, '2019-09-12 17:44:15', 'cash_on_delivery', 'a:1:{i:0;a:2:{s:2:\"id\";s:2:\"33\";s:8:\"quantity\";s:1:\"1\";}}', 0);
+(1, 1, '2019-09-12 15:44:15', 'cash_on_delivery', 'a:1:{i:0;a:2:{s:2:\"id\";s:2:\"33\";s:8:\"quantity\";s:1:\"1\";}}', 0);
 
 -- --------------------------------------------------------
 
@@ -412,37 +409,29 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `folder` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
-  `category_id` int(10) UNSIGNED NOT NULL COMMENT 'category id',
-  `quantity` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `quantity` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `category_id` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   `link_to` varchar(255) DEFAULT NULL,
-  `order_position` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `procurements` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `order_position` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `procurements` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `tags` varchar(255) NOT NULL,
-  `hidden` tinyint(1) NOT NULL DEFAULT '0',
-  `our_beer` tinyint(1) NOT NULL DEFAULT '0'
+  `hidden` tinyint(1) NOT NULL DEFAULT 0,
+  `our_beer` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `products`
 --
 
-INSERT INTO `products` (`id`, `image`, `folder`, `created_at`, `updated_at`, `category_id`, `quantity`, `url`, `link_to`, `order_position`, `procurements`, `tags`, `hidden`, `our_beer`) VALUES
-(1, 'images/r6PlNR3FLk3pwe3LyjFnBJ9ZJ5VdNMJJYkcTNY9f.jpeg', 0, '2019-06-29 09:35:27', NULL, 1, 5, 'Birra-1', NULL, 0, 0, 'Birra', 0, 0),
-(11, '', 0, '2019-07-22 07:59:47', NULL, 1, 10, 'birra-2', NULL, 0, 0, '', 0, 0),
-(12, '', 0, '2019-07-22 08:01:08', NULL, 1, 10, 'birra-12', NULL, 0, 0, '', 0, 0),
-(13, '', 0, '2019-07-22 08:02:01', NULL, 1, 10, 'birra-13', NULL, 0, 0, '', 0, 0),
-(14, '', 0, '2019-07-22 08:03:08', NULL, 1, 10, 'birra-14', NULL, 0, 0, '', 0, 0),
-(15, '', 0, '2019-07-22 08:03:23', NULL, 1, 10, 'birra-15', NULL, 0, 0, '', 0, 0),
-(16, '', 0, '2019-07-22 08:05:02', NULL, 1, 10, 'birra-16', NULL, 0, 0, '', 0, 0),
-(17, '', 0, '2019-07-22 08:05:50', NULL, 1, 55, 'birra-17', NULL, 0, 0, '', 0, 0),
-(18, '', 0, '2019-07-22 08:07:06', NULL, 1, 55, 'birra-18', NULL, 0, 0, '', 0, 0),
-(31, 'images/pcuNBYIALEmvd1pKla1a130bzROi0nGHbHld0F3Q.png', 1568307343, '2019-09-12 16:55:43', NULL, 2, 20, 'Zombie-19', NULL, 1, 0, '', 0, 0),
-(32, 'images/iseRQXidpWO8kBzTwXWSp6pv27veADMqW4N1bmm8.png', 1568307524, '2019-09-12 16:58:44', NULL, 2, 50, 'Brave-Heart-32', NULL, 0, 0, '', 0, 1),
-(33, 'images/kx07dUYBqEVZ5unA7vJZ2ZORBV3mOlLgMKv3AXYU.png', 1568307677, '2019-09-12 17:01:17', NULL, 5, 60, 'Craft-beer-33', NULL, 0, 0, '', 0, 1),
-(34, 'images/2vpkjp12RnOyZ3SBZYw3R0sSd3jVWwGEk3iHvNtN.png', 1568307923, '2019-09-12 17:05:23', NULL, 3, 300, 'Paddys-brew-34', NULL, 0, 0, '', 0, 0);
+INSERT INTO `products` (`id`, `image`, `folder`, `created_at`, `updated_at`, `quantity`, `category_id`, `url`, `link_to`, `order_position`, `procurements`, `tags`, `hidden`, `our_beer`) VALUES
+(2, 'images/r6PlNR3FLk3pwe3LyjFnBJ9ZJ5VdNMJJYkcTNY9f.jpeg', 0, '2021-09-23 09:33:57', NULL, 5, 2, 'Birra-1', NULL, 0, 0, 'Birra', 0, 0),
+(31, 'images/pcuNBYIALEmvd1pKla1a130bzROi0nGHbHld0F3Q.png', 1568307343, '2019-09-12 14:55:43', NULL, 20, 2, 'Zombie-19', NULL, 1, 0, '', 0, 0),
+(32, 'images/iseRQXidpWO8kBzTwXWSp6pv27veADMqW4N1bmm8.png', 1568307524, '2019-09-12 14:58:44', NULL, 50, 2, 'Brave-Heart-32', NULL, 0, 0, '', 0, 1),
+(33, 'images/kx07dUYBqEVZ5unA7vJZ2ZORBV3mOlLgMKv3AXYU.png', 1568307677, '2019-09-12 15:01:17', NULL, 60, 5, 'Craft-beer-33', NULL, 0, 0, '', 0, 1),
+(34, 'images/2vpkjp12RnOyZ3SBZYw3R0sSd3jVWwGEk3iHvNtN.png', 1568307923, '2019-09-12 15:05:23', NULL, 300, 3, 'Paddys-brew-34', NULL, 0, 0, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -452,7 +441,7 @@ INSERT INTO `products` (`id`, `image`, `folder`, `created_at`, `updated_at`, `ca
 
 CREATE TABLE `products_translations` (
   `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL COMMENT 'id of product',
+  `for_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `price` varchar(20) NOT NULL,
@@ -623,7 +612,7 @@ CREATE TABLE `support_message` (
   `id_ticket` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `text` text NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -631,12 +620,12 @@ CREATE TABLE `support_message` (
 --
 
 INSERT INTO `support_message` (`id`, `id_ticket`, `id_user`, `text`, `time`) VALUES
-(1, 1, 1, 'in una forte epistassi', '2019-07-20 10:36:17'),
-(2, 1, 3, 'assurdo', '2019-09-04 14:22:31'),
-(3, 1, 3, 'comuqnue in quanto admin, non me ne frega un cazzo', '2019-09-04 14:22:48'),
-(4, 1, 3, 'asdsad', '2019-09-11 11:49:35'),
-(5, 2, 3, 'fdfdfdfdffd', '2019-09-11 17:42:36'),
-(6, 2, 3, 'vaffanculo', '2019-09-11 17:42:59');
+(1, 1, 1, 'in una forte epistassi', '2019-07-20 08:36:17'),
+(2, 1, 1, 'assurdo', '2019-09-04 12:22:31'),
+(3, 1, 1, 'comuqnue in quanto admin, non me ne frega un cazzo', '2019-09-04 12:22:48'),
+(4, 1, 1, 'asdsad', '2019-09-11 09:49:35'),
+(5, 2, 1, 'fdfdfdfdffd', '2019-09-11 15:42:36'),
+(6, 2, 1, 'vaffanculo', '2019-09-11 15:42:59');
 
 -- --------------------------------------------------------
 
@@ -648,7 +637,7 @@ CREATE TABLE `support_request` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `obj` varchar(150) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -657,8 +646,7 @@ CREATE TABLE `support_request` (
 --
 
 INSERT INTO `support_request` (`id`, `id_user`, `obj`, `time`, `status`) VALUES
-(1, 1, 'ho perso il mio nome', '2019-07-20 10:36:17', 0),
-(2, 3, 'fgfgfggfgf', '2019-09-11 17:42:36', 0);
+(1, 1, 'ho perso il mio nome', '2019-07-20 08:36:17', 0);
 
 -- --------------------------------------------------------
 
@@ -683,10 +671,10 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `remember_token` varchar(255) DEFAULT NULL,
-  `isAdmin` tinyint(1) DEFAULT '0'
+  `isAdmin` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -694,10 +682,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `updated_at`, `created_at`, `remember_token`, `isAdmin`) VALUES
-(1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 19:30:35', '2019-06-24 19:30:35', 'IJrK0yrEce8DIBjKM44OqaycpTNd5gbIntCguHjkWwAz3QoQY45hDQxfIDqv', 1),
-(2, 'asd', 'dio@ca.ne', '$2y$10$yhB2C6NNn2yRuLXS39B8a.qBYyZ4Pcbfo5iOcJnNyy7923lSCmLhO', '2019-06-24 19:30:35', '2019-06-24 19:30:35', 'wqSGiiCPWijGFZzh7ldRv6HhglrErOQvsIpCsJzN3UUO9j3mxn8FghacrqYp', 0),
-(3, 'User4u', 'kiro@dev.bg', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 19:30:35', '2019-06-24 19:30:35', 'LnD1WMgGxY7KXEd7ZvjqZGU99SEDWAWmRcCHKbBs5bcmhx3IjNI7MztzO0Zq', 1),
-(4, 'utente', 'utente@utente.it', '$2y$10$0gkTAWG9pl2u/1UaI9xW0uyFa.ZnyESlweQkz.2O1OHEqY5GDjsAe', '2019-09-12 15:42:52', '2019-09-12 15:42:52', NULL, 0);
+(1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 17:30:35', '2019-06-24 17:30:35', 'IJrK0yrEce8DIBjKM44OqaycpTNd5gbIntCguHjkWwAz3QoQY45hDQxfIDqv', 1);
 
 --
 -- Trigger `users`
@@ -741,7 +726,8 @@ INSERT INTO `user_address` (`id`, `user_id`, `address`, `city`, `post_cod`, `cou
 -- Indici per le tabelle `blog`
 --
 ALTER TABLE `blog`
-  ADD PRIMARY KEY (`post_id`);
+  ADD PRIMARY KEY (`post_id`),
+  ADD KEY `post_user_id` (`post_user_id`);
 
 --
 -- Indici per le tabelle `carousel`
@@ -759,13 +745,15 @@ ALTER TABLE `carousel_info`
 -- Indici per le tabelle `carousel_translations`
 --
 ALTER TABLE `carousel_translations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_id` (`for_id`);
 
 --
 -- Indici per le tabelle `carousel_translations_info`
 --
 ALTER TABLE `carousel_translations_info`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_id` (`for_id`);
 
 --
 -- Indici per le tabelle `categories`
@@ -778,7 +766,8 @@ ALTER TABLE `categories`
 -- Indici per le tabelle `categories_translations`
 --
 ALTER TABLE `categories_translations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_id` (`for_id`);
 
 --
 -- Indici per le tabelle `contacts`
@@ -796,7 +785,8 @@ ALTER TABLE `coupon`
 -- Indici per le tabelle `expeditions`
 --
 ALTER TABLE `expeditions`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_order` (`id_order`);
 
 --
 -- Indici per le tabelle `fast_orders`
@@ -808,25 +798,30 @@ ALTER TABLE `fast_orders`
 -- Indici per le tabelle `favorites`
 --
 ALTER TABLE `favorites`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indici per le tabelle `img_product`
 --
 ALTER TABLE `img_product`
-  ADD PRIMARY KEY (`id_img_prodotto`);
+  ADD PRIMARY KEY (`id_img_prodotto`),
+  ADD KEY `id_product` (`id_product`);
 
 --
 -- Indici per le tabelle `img_user`
 --
 ALTER TABLE `img_user`
-  ADD PRIMARY KEY (`id_img_user`);
+  ADD PRIMARY KEY (`id_img_user`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indici per le tabelle `newsletters`
 --
 ALTER TABLE `newsletters`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indici per le tabelle `orders`
@@ -838,37 +833,44 @@ ALTER TABLE `orders`
 -- Indici per le tabelle `orders_clients`
 --
 ALTER TABLE `orders_clients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_order` (`for_order`);
 
 --
 -- Indici per le tabelle `producers`
 --
 ALTER TABLE `producers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`);
 
 --
 -- Indici per le tabelle `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indici per le tabelle `products_translations`
 --
 ALTER TABLE `products_translations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_id` (`for_id`);
 
 --
 -- Indici per le tabelle `refunds`
 --
 ALTER TABLE `refunds`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indici per le tabelle `reviews`
 --
 ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indici per le tabelle `social_contacts`
@@ -892,7 +894,8 @@ ALTER TABLE `story_carousel`
 -- Indici per le tabelle `story_carousel_translations`
 --
 ALTER TABLE `story_carousel_translations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `story_carousel_translations_ibfk_1` (`for_id`);
 
 --
 -- Indici per le tabelle `story_info`
@@ -904,19 +907,23 @@ ALTER TABLE `story_info`
 -- Indici per le tabelle `support_message`
 --
 ALTER TABLE `support_message`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_ticket` (`id_ticket`);
 
 --
 -- Indici per le tabelle `support_request`
 --
 ALTER TABLE `support_request`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indici per le tabelle `tag`
 --
 ALTER TABLE `tag`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`);
 
 --
 -- Indici per le tabelle `users`
@@ -928,7 +935,8 @@ ALTER TABLE `users`
 -- Indici per le tabelle `user_address`
 --
 ALTER TABLE `user_address`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -1004,7 +1012,7 @@ ALTER TABLE `fast_orders`
 -- AUTO_INCREMENT per la tabella `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `img_product`
@@ -1106,7 +1114,7 @@ ALTER TABLE `support_message`
 -- AUTO_INCREMENT per la tabella `support_request`
 --
 ALTER TABLE `support_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `tag`
@@ -1118,13 +1126,139 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `user_address`
 --
 ALTER TABLE `user_address`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`post_user_id`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `carousel_translations`
+--
+ALTER TABLE `carousel_translations`
+  ADD CONSTRAINT `carousel_translations_ibfk_1` FOREIGN KEY (`for_id`) REFERENCES `carousel` (`id`);
+
+--
+-- Limiti per la tabella `carousel_translations_info`
+--
+ALTER TABLE `carousel_translations_info`
+  ADD CONSTRAINT `carousel_translations_info_ibfk_1` FOREIGN KEY (`for_id`) REFERENCES `carousel_info` (`id`);
+
+--
+-- Limiti per la tabella `categories_translations`
+--
+ALTER TABLE `categories_translations`
+  ADD CONSTRAINT `categories_translations_ibfk_1` FOREIGN KEY (`for_id`) REFERENCES `categories` (`id`);
+
+--
+-- Limiti per la tabella `expeditions`
+--
+ALTER TABLE `expeditions`
+  ADD CONSTRAINT `expeditions_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`);
+
+--
+-- Limiti per la tabella `favorites`
+--
+ALTER TABLE `favorites`
+  ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `img_product`
+--
+ALTER TABLE `img_product`
+  ADD CONSTRAINT `img_product_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
+
+--
+-- Limiti per la tabella `img_user`
+--
+ALTER TABLE `img_user`
+  ADD CONSTRAINT `img_user_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `newsletters`
+--
+ALTER TABLE `newsletters`
+  ADD CONSTRAINT `newsletters_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `orders_clients`
+--
+ALTER TABLE `orders_clients`
+  ADD CONSTRAINT `orders_clients_ibfk_1` FOREIGN KEY (`for_order`) REFERENCES `orders` (`id`);
+
+--
+-- Limiti per la tabella `producers`
+--
+ALTER TABLE `producers`
+  ADD CONSTRAINT `producers_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
+
+--
+-- Limiti per la tabella `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+--
+-- Limiti per la tabella `products_translations`
+--
+ALTER TABLE `products_translations`
+  ADD CONSTRAINT `products_translations_ibfk_1` FOREIGN KEY (`for_id`) REFERENCES `products` (`id`);
+
+--
+-- Limiti per la tabella `refunds`
+--
+ALTER TABLE `refunds`
+  ADD CONSTRAINT `refunds_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `story_carousel_translations`
+--
+ALTER TABLE `story_carousel_translations`
+  ADD CONSTRAINT `story_carousel_translations_ibfk_1` FOREIGN KEY (`for_id`) REFERENCES `story_carousel` (`id`);
+
+--
+-- Limiti per la tabella `support_message`
+--
+ALTER TABLE `support_message`
+  ADD CONSTRAINT `support_message_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `support_request`
+--
+ALTER TABLE `support_request`
+  ADD CONSTRAINT `support_request_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limiti per la tabella `tag`
+--
+ALTER TABLE `tag`
+  ADD CONSTRAINT `tag_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
+
+--
+-- Limiti per la tabella `user_address`
+--
+ALTER TABLE `user_address`
+  ADD CONSTRAINT `user_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
