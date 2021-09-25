@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Lang;
+use Lang;
 use Config;
 use App\Models\Admin\PublishModel;
 use App\Models\Admin\CategoriesModel;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 class PublishController extends Controller
 {

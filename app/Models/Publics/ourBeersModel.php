@@ -12,7 +12,7 @@ class ourBeersModel extends Model
     public function getOurBeers()
     {
         return DB::table('products')
-            ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
+            ->select(DB::raw('products.*, products_translations.name as name_x, products_translations.description, products_translations.price,
                 products_translations.ml, products_translations.alchool, products_translations.quickdescription, categories_translations.name as namee'))
             ->where('products.our_beer', '=', 1)
             ->where('products.hidden', '=', 0)

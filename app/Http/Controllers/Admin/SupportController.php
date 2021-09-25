@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SupportModel;
 use Auth;
-use Illuminate\Support\Facades\Lang;
-//use Lang;
+use Lang;
 
 class SupportController extends Controller
 {

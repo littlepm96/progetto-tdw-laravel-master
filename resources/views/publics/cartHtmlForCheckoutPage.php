@@ -1,8 +1,6 @@
 <ul>
     <?php
-    $sum_total = $sum = 0.0;
-    $cartProduct=$cartProduct=0.0;
-    $products = $cartProduct = 0.0;
+    $sum_total = $sum = 0;
     foreach ($products as $cartProduct) {
         $sum_total += $cartProduct->num_added * (float) $cartProduct->price;
         $sum = $cartProduct->num_added * (float) $cartProduct->price;

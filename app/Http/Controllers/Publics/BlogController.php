@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Publics\BlogModel;
 use App\Models\Admin\UsersModel;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Lang;
+use Auth;
+use Lang;
 
 class BlogController extends Controller
 {
