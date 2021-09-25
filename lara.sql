@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 25, 2021 alle 15:37
+-- Creato il: Set 23, 2021 alle 11:54
 -- Versione del server: 10.4.21-MariaDB
 -- Versione PHP: 7.3.30
 
@@ -153,9 +153,7 @@ INSERT INTO `categories` (`id`, `parent`, `position`, `url`) VALUES
 (2, 0, 0, 'Brown-Ale'),
 (3, 0, 0, 'Pale-ale'),
 (4, 0, 0, 'Stout'),
-(5, 0, 0, 'Wheat-beer'),
-(6, 0, 0, 'Pils'),
-(7, 0, 0, 'Lager');
+(5, 0, 0, 'Wheat-beer');
 
 -- --------------------------------------------------------
 
@@ -178,9 +176,7 @@ INSERT INTO `categories_translations` (`id`, `for_id`, `name`, `locale`) VALUES
 (3, 2, 'Brown Ale', 'en'),
 (4, 3, 'Pale ale', 'en'),
 (5, 4, 'Stout', 'en'),
-(6, 5, 'Wheat beer', 'en'),
-(7, 6, 'Pils', 'en'),
-(8, 7, 'Lager', 'en');
+(6, 5, 'Wheat beer', 'en');
 
 -- --------------------------------------------------------
 
@@ -268,7 +264,8 @@ CREATE TABLE `favorites` (
 --
 
 INSERT INTO `favorites` (`id`, `id_product`, `id_user`) VALUES
-(4, 35, 1);
+(2, 32, 1),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -300,8 +297,7 @@ CREATE TABLE `img_user` (
 
 INSERT INTO `img_user` (`id_img_user`, `id_user`, `directory`) VALUES
 (1, 1, 'img_user/XqlJuB5WXp8UEfW8686rWFlRhuVrlt33BN00YYDa.png'),
-(2, 1, 'profile.png'),
-(3, 2, 'profile.png');
+(2, 1, 'profile.png');
 
 -- --------------------------------------------------------
 
@@ -431,10 +427,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `image`, `folder`, `created_at`, `updated_at`, `quantity`, `category_id`, `url`, `link_to`, `order_position`, `procurements`, `tags`, `hidden`, `our_beer`) VALUES
-(35, 'images/msLYvMYtt8QIJEdoylsfUTcnUXEqRKZV2YIYpIxF.jpeg', 1632574734, '2021-09-25 12:58:54', NULL, 12, 7, 'Peroni-35', 'https://www.birraperoni.it/prodotti/peroni/', 0, 0, '', 0, 1),
-(36, 'images/HFMZHBSmKFQq769FTmSJ3u1izKI9PVlNIZJtN6NZ.jpeg', 1632575870, '2021-09-25 13:17:50', NULL, 20, 2, 'Zombie-36', NULL, 1, 0, '', 0, 0),
-(37, 'images/mNFlugfUA4QECXNn834lK9NY5PqztprlX4EZ7SOW.jpeg', 1632576354, '2021-09-25 13:25:54', NULL, 20, 2, 'Brave-Heart-37', NULL, 0, 0, '', 0, 1),
-(38, 'images/DcnbDOp48yPcrac425LCkv3RCrDCrRuFWsvkiE37.jpeg', 1632576847, '2021-09-25 13:34:07', NULL, 11, 5, 'Craft-beer-38', NULL, 0, 0, '', 0, 0);
+(2, 'images/r6PlNR3FLk3pwe3LyjFnBJ9ZJ5VdNMJJYkcTNY9f.jpeg', 0, '2021-09-23 09:33:57', NULL, 5, 2, 'Birra-1', NULL, 0, 0, 'Birra', 0, 0),
+(31, 'images/pcuNBYIALEmvd1pKla1a130bzROi0nGHbHld0F3Q.png', 1568307343, '2019-09-12 14:55:43', NULL, 20, 2, 'Zombie-19', NULL, 1, 0, '', 0, 0),
+(32, 'images/iseRQXidpWO8kBzTwXWSp6pv27veADMqW4N1bmm8.png', 1568307524, '2019-09-12 14:58:44', NULL, 50, 2, 'Brave-Heart-32', NULL, 0, 0, '', 0, 1),
+(33, 'images/kx07dUYBqEVZ5unA7vJZ2ZORBV3mOlLgMKv3AXYU.png', 1568307677, '2019-09-12 15:01:17', NULL, 60, 5, 'Craft-beer-33', NULL, 0, 0, '', 0, 1),
+(34, 'images/2vpkjp12RnOyZ3SBZYw3R0sSd3jVWwGEk3iHvNtN.png', 1568307923, '2019-09-12 15:05:23', NULL, 300, 3, 'Paddys-brew-34', NULL, 0, 0, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -459,10 +456,10 @@ CREATE TABLE `products_translations` (
 --
 
 INSERT INTO `products_translations` (`id`, `for_id`, `name`, `description`, `price`, `ml`, `alchool`, `quickdescription`, `locale`) VALUES
-(26, 35, 'Peroni', 'Peroni è la lager italiana dal grado alcolico di 4,7% vol. che unisce tutti da Nord a Sud. È prodotta dal 1846 e, oggi come allora, utilizza solo ingredienti selezionati come il Malto 100% italiano, frutto di una speciale qualità di orzo, per offrire agli italiani una birra di alta qualità.', '0.99', '0.66', '4.7', 'Moderatamente amaro,\r\nequilibrato di luppolo\r\ne malto', 'en'),
-(27, 36, 'Zombie', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', '4.00', '33', '7', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
-(28, 37, 'Brave Heart', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4.25', '33', '5', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
-(29, 38, 'Craft beer', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4.75', '33', '12', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en');
+(22, 31, 'Zombie', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', '4', '33', '7', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
+(23, 32, 'Brave Heart', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4,25', '33', '5', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
+(24, 33, 'Craft beer', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4,75', '33', '12', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
+(25, 34, 'Paddys brew', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4,80', '33', '8', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en');
 
 -- --------------------------------------------------------
 
@@ -685,8 +682,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `updated_at`, `created_at`, `remember_token`, `isAdmin`) VALUES
-(1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 17:30:35', '2019-06-24 17:30:35', 'dOF09RNziIlOR2cjy54Y9L1SPFFEE210Hnor5IGyPZzEyHXsUoQus9dJOCwk', 1),
-(2, 'Andrea', 'andrea@andrea.andrea', '$2y$10$FJINWg4wQKfTn2G6WDx45eLfxGAGpGDRJjbww6vt3v5G7XDvYGmQG', '2021-09-25 10:34:46', '2021-09-25 10:34:46', 'i2Lvb8wt9rXhhXyDL6gNINqmXxnW3Ezakwe8XPupszCk2xmVz49jJfGEE1Se', 0);
+(1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 17:30:35', '2019-06-24 17:30:35', 'IJrK0yrEce8DIBjKM44OqaycpTNd5gbIntCguHjkWwAz3QoQY45hDQxfIDqv', 1);
 
 --
 -- Trigger `users`
@@ -980,13 +976,13 @@ ALTER TABLE `carousel_translations_info`
 -- AUTO_INCREMENT per la tabella `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `categories_translations`
 --
 ALTER TABLE `categories_translations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `contacts`
@@ -1016,7 +1012,7 @@ ALTER TABLE `fast_orders`
 -- AUTO_INCREMENT per la tabella `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `img_product`
@@ -1028,7 +1024,7 @@ ALTER TABLE `img_product`
 -- AUTO_INCREMENT per la tabella `img_user`
 --
 ALTER TABLE `img_user`
-  MODIFY `id_img_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_img_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `newsletters`
@@ -1058,13 +1054,13 @@ ALTER TABLE `producers`
 -- AUTO_INCREMENT per la tabella `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT per la tabella `products_translations`
 --
 ALTER TABLE `products_translations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT per la tabella `refunds`
@@ -1130,7 +1126,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `user_address`
