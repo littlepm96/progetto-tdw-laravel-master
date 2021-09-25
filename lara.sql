@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 23, 2021 alle 11:54
+-- Creato il: Set 25, 2021 alle 17:41
 -- Versione del server: 10.4.21-MariaDB
 -- Versione PHP: 7.3.30
 
@@ -153,7 +153,9 @@ INSERT INTO `categories` (`id`, `parent`, `position`, `url`) VALUES
 (2, 0, 0, 'Brown-Ale'),
 (3, 0, 0, 'Pale-ale'),
 (4, 0, 0, 'Stout'),
-(5, 0, 0, 'Wheat-beer');
+(5, 0, 0, 'Wheat-beer'),
+(6, 0, 0, 'Pils'),
+(7, 0, 0, 'Lager');
 
 -- --------------------------------------------------------
 
@@ -176,7 +178,9 @@ INSERT INTO `categories_translations` (`id`, `for_id`, `name`, `locale`) VALUES
 (3, 2, 'Brown Ale', 'en'),
 (4, 3, 'Pale ale', 'en'),
 (5, 4, 'Stout', 'en'),
-(6, 5, 'Wheat beer', 'en');
+(6, 5, 'Wheat beer', 'en'),
+(7, 6, 'Pils', 'en'),
+(8, 7, 'Lager', 'en');
 
 -- --------------------------------------------------------
 
@@ -259,14 +263,6 @@ CREATE TABLE `favorites` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dump dei dati per la tabella `favorites`
---
-
-INSERT INTO `favorites` (`id`, `id_product`, `id_user`) VALUES
-(2, 32, 1),
-(3, 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -297,7 +293,8 @@ CREATE TABLE `img_user` (
 
 INSERT INTO `img_user` (`id_img_user`, `id_user`, `directory`) VALUES
 (1, 1, 'img_user/XqlJuB5WXp8UEfW8686rWFlRhuVrlt33BN00YYDa.png'),
-(2, 1, 'profile.png');
+(2, 1, 'profile.png'),
+(3, 2, 'profile.png');
 
 -- --------------------------------------------------------
 
@@ -331,7 +328,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `order_id`, `time_created`, `type`, `products`, `status`) VALUES
-(1, 1, '2019-09-12 15:44:15', 'cash_on_delivery', 'a:1:{i:0;a:2:{s:2:\"id\";s:2:\"33\";s:8:\"quantity\";s:1:\"1\";}}', 0);
+(2, 1, '2021-09-25 15:39:05', 'cash_on_delivery', 'a:1:{i:0;a:2:{s:2:\"id\";s:2:\"44\";s:8:\"quantity\";s:1:\"4\";}}', 0);
 
 -- --------------------------------------------------------
 
@@ -358,7 +355,7 @@ CREATE TABLE `orders_clients` (
 --
 
 INSERT INTO `orders_clients` (`id`, `for_order`, `first_name`, `last_name`, `email`, `phone`, `address`, `city`, `post_code`, `notes`, `total_price`) VALUES
-(1, 1, 'Pippo', 'CIao', 'utente@utente.it', '412', 'asdds', '', '', '', 4);
+(2, 2, 'andrea', 'andrea', 'andrea@andrea.andrea', '22', 'andrea', '', '', '', 16);
 
 -- --------------------------------------------------------
 
@@ -427,11 +424,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `image`, `folder`, `created_at`, `updated_at`, `quantity`, `category_id`, `url`, `link_to`, `order_position`, `procurements`, `tags`, `hidden`, `our_beer`) VALUES
-(2, 'images/r6PlNR3FLk3pwe3LyjFnBJ9ZJ5VdNMJJYkcTNY9f.jpeg', 0, '2021-09-23 09:33:57', NULL, 5, 2, 'Birra-1', NULL, 0, 0, 'Birra', 0, 0),
-(31, 'images/pcuNBYIALEmvd1pKla1a130bzROi0nGHbHld0F3Q.png', 1568307343, '2019-09-12 14:55:43', NULL, 20, 2, 'Zombie-19', NULL, 1, 0, '', 0, 0),
-(32, 'images/iseRQXidpWO8kBzTwXWSp6pv27veADMqW4N1bmm8.png', 1568307524, '2019-09-12 14:58:44', NULL, 50, 2, 'Brave-Heart-32', NULL, 0, 0, '', 0, 1),
-(33, 'images/kx07dUYBqEVZ5unA7vJZ2ZORBV3mOlLgMKv3AXYU.png', 1568307677, '2019-09-12 15:01:17', NULL, 60, 5, 'Craft-beer-33', NULL, 0, 0, '', 0, 1),
-(34, 'images/2vpkjp12RnOyZ3SBZYw3R0sSd3jVWwGEk3iHvNtN.png', 1568307923, '2019-09-12 15:05:23', NULL, 300, 3, 'Paddys-brew-34', NULL, 0, 0, '', 0, 0);
+(43, 'images/qAgrxY78r9YaqPQ8B6myvlAu42ldnnytuM91BtZH.jpeg', 1632583997, '2021-09-25 15:33:17', NULL, 15, 6, 'Peroni-43', NULL, 0, 0, '', 0, 0),
+(44, 'images/y6V6lTUDurozSSuvtiG1xnaKRkLPWS6LCjjJDvA5.jpeg', 1632584059, '2021-09-25 15:34:19', NULL, 23, 2, 'Zombie-44', NULL, 0, 0, '', 0, 1),
+(45, 'images/vQGBRbA0OBC9cNpJy5K64i6qbBE26VppbJlc9ewH.jpeg', 1632584125, '2021-09-25 15:35:25', NULL, 25, 2, 'Brave-Heart-45', NULL, 0, 0, '', 0, 0),
+(46, 'images/UOfTm3hmPchJhG5ETsaT3h6gjxJyjtZcr2UVMbSh.jpeg', 1632584190, '2021-09-25 15:36:30', NULL, 11, 4, 'Craft-beer-46', NULL, 0, 0, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -456,10 +452,10 @@ CREATE TABLE `products_translations` (
 --
 
 INSERT INTO `products_translations` (`id`, `for_id`, `name`, `description`, `price`, `ml`, `alchool`, `quickdescription`, `locale`) VALUES
-(22, 31, 'Zombie', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', '4', '33', '7', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
-(23, 32, 'Brave Heart', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4,25', '33', '5', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
-(24, 33, 'Craft beer', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4,75', '33', '12', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
-(25, 34, 'Paddys brew', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4,80', '33', '8', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en');
+(34, 43, 'Peroni', 'Peroni è la lager italiana dal grado alcolico di 4,7% vol. che unisce tutti da Nord a Sud. È prodotta dal 1846 e, oggi come allora, utilizza solo ingredienti selezionati come il Malto 100% italiano, frutto di una speciale qualità di orzo, per offrire agli italiani una birra di alta qualità.', '0.99', '33', '4.7', 'Moderatamente amaro,\r\nequilibrato di luppolo\r\ne malto', 'en'),
+(35, 44, 'Zombie', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', '4.01', '33', '7', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
+(36, 45, 'Brave Heart', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4.25', '33', '5', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en'),
+(37, 46, 'Craft beer', 'Poured into a goblet, the beer offers some amazing head retention and rings of white lace sticking to the glass after each sip. Good clarity, with a dull golden color. The nose contains apricots and pear, faint ground white pepper, chalky yeast and an aroma of shortbread biscuits. It’s very crisp and lively with a smooth back and moderate body. Spicy phenols wrap around its dry maltiness, which is similar to crusty bread, highlighted by some pithy notes of green banana. Spicy hops, with a flare from the alcohol, provide a nice bite along with a moderate grassy bitterness. Earthy on the palate with a flash of honey-like sweetness. Yeasty and fruity undertones layer middle to end. Finishes dry.', '4.75', '33', '12', 'Vicious and viscous, this menacing brew pours opaque black with a creamy maduro-colored head. Its aroma offers seductive whiskey, chewy red wine, dark fruit and lavish tobacco. Berserker Imperial Stout invades your taste buds with in-your-face flavor. Weighing in at almost 13% alcohol by volume, Berserker is completely out-of-control.', 'en');
 
 -- --------------------------------------------------------
 
@@ -682,7 +678,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `updated_at`, `created_at`, `remember_token`, `isAdmin`) VALUES
-(1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 17:30:35', '2019-06-24 17:30:35', 'IJrK0yrEce8DIBjKM44OqaycpTNd5gbIntCguHjkWwAz3QoQY45hDQxfIDqv', 1);
+(1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 17:30:35', '2019-06-24 17:30:35', '7px3LqYOnjH7iiDny26072KDLkSP9PbQoI0EDgY7bhjduFlGoSnZBz6ksHiH', 1),
+(2, 'Andrea', 'andrea@andrea.andrea', '$2y$10$FJINWg4wQKfTn2G6WDx45eLfxGAGpGDRJjbww6vt3v5G7XDvYGmQG', '2021-09-25 10:34:46', '2021-09-25 10:34:46', 'i2Lvb8wt9rXhhXyDL6gNINqmXxnW3Ezakwe8XPupszCk2xmVz49jJfGEE1Se', 0);
 
 --
 -- Trigger `users`
@@ -976,13 +973,13 @@ ALTER TABLE `carousel_translations_info`
 -- AUTO_INCREMENT per la tabella `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `categories_translations`
 --
 ALTER TABLE `categories_translations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `contacts`
@@ -1012,7 +1009,7 @@ ALTER TABLE `fast_orders`
 -- AUTO_INCREMENT per la tabella `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `img_product`
@@ -1024,7 +1021,7 @@ ALTER TABLE `img_product`
 -- AUTO_INCREMENT per la tabella `img_user`
 --
 ALTER TABLE `img_user`
-  MODIFY `id_img_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_img_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `newsletters`
@@ -1036,13 +1033,13 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT per la tabella `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `orders_clients`
 --
 ALTER TABLE `orders_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `producers`
@@ -1054,13 +1051,13 @@ ALTER TABLE `producers`
 -- AUTO_INCREMENT per la tabella `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT per la tabella `products_translations`
 --
 ALTER TABLE `products_translations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT per la tabella `refunds`
@@ -1126,7 +1123,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `user_address`
