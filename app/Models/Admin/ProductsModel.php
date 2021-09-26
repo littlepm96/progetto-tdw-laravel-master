@@ -37,8 +37,9 @@ class ProductsModel extends Model
     {
         $this->id = $id;
         DB::transaction(function () {
-            DB::table('products')->where('id', $this->id)->delete();
             DB::table('products_translations')->where('for_id', $this->id)->delete();
+            DB::table('products')->where('id', $this->id)->delete();
+
         });
     }
 
