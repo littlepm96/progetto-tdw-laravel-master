@@ -15,15 +15,14 @@
 					<section class="alignMiddle mobile-center">
 						<header>
 							<h1><i>{{$product->category_name}} &nbsp;&nbsp;-&nbsp;&nbsp;{{$product->ml}} ml &nbsp;&nbsp;-</i>&nbsp;&nbsp;{{$product->alchool}} %</h1>
-							</br>
 							<h2>{{$product->name}}</h2>
 							<h2><a href="{{lang_url('addFavorite/'.$product->id)}}" class="btn btn-block btn-default", style="width:290px";>  Add/remove favorite</a></h2>
 						</header>
 						<p>{{$product->quickdescription}}</p>
-						</br></br>
 						<h2>&euro;&nbsp;{{$product->price}}</h2>
-						<h4><input class="quantity"  name="quantity" type="text" placeholder="Quantity"> <a href="javascript:void(0);" class="buy-now to-cart"  data-product-id="{{$product->id}}" ><span>Add to cart</span></a></h4>
-
+						<h4><input class="quantity"  name="quantity" type="text" placeholder="Quantity">
+							<a href="javascript:void(0);" class="buy-now to-cart"  data-product-id="{{$product->id}}" >
+								<span>Add to cart</span></a></h4>
 					</section>
 				</div>
 			</div>

@@ -28,7 +28,7 @@
                     <div class="product">
                         <a href="{{ lang_url('category/'.$category->url) }}">
                             <span>Select category</span>
-                            <img src="" alt="{{$category->name}}">
+                            <img src="../public/img/cash_on_deliv.png" alt="{{$category->name}}">
                         </a>
                     </div>
                 </div>
