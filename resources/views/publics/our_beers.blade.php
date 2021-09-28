@@ -7,22 +7,22 @@
     <div class="container-fluid dark section no-padding">
         <div class="row">
             <div class="col-sm-3 col-xs-6 icon-grid">
-                <img src="images/Hops.svg" class="svg" alt="Quality Ingredients" />
+                <img src="../resources/views/layouts/images/ambiente.png" class="svg" alt="Quality Ingredients" />
                 <h4>All natural</h4>
                 <p>@isset($carousel) {{$carousel->text_container_1}} @endisset</p>
             </div>
             <div class="col-sm-3 col-xs-6 icon-grid">
-                <img src="images/Mill.svg" class="svg" alt="Quality Ingredients" />
+                <img src="../resources/views/layouts/images/madeinuk.jpg" class="svg" alt="Quality Ingredients" />
                 <h4>MAde in the UK</h4>
                 <p>@isset($carousel) {{$carousel->text_container_2}} @endisset</p>
             </div>
             <div class="col-sm-3 col-xs-6 icon-grid">
-                <img src="images/3DSixPack.svg" class="svg" alt="Quality Ingredients" />
+                <img src="../resources/views/layouts/images/collezione.png"  class="svg" alt="Quality Ingredients" />
                 <h4>Huge variety</h4>
                 <p>@isset($carousel) {{$carousel->text_container_3}} @endisset</p>
             </div>
             <div class="col-sm-3 col-xs-6 icon-grid">
-                <img src="images/Pint.svg" class="svg" alt="Quality Ingredients" />
+                <img src="../resources/views/layouts/images/locale.jpg" class="svg" alt="Quality Ingredients" />
                 <h4>Stocked locally</h4>
                 <p>@isset($carousel) {{$carousel->text_container_4}} @endisset</p>
             </div>
@@ -52,7 +52,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-5 matchHeight">
-                                    <img src="../public/img/copertina_4.jpg" alt="About our Brewery" class="alignMiddle" />
+                                    <img src="../storage/app/public/images/UOfTm3hmPchJhG5ETsaT3h6gjxJyjtZcr2UVMbSh.jpeg" alt="About our Brewery" class="alignMiddle" />
                                 </div>
                                 <div class="col-sm-6 col-sm-push-1 matchHeight">
                                     <section class="alignMiddle mobile-center">
