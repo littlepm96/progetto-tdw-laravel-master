@@ -131,7 +131,7 @@
     </div>
 
     <!-- Hero -->
-    <div id="hero" class="single-page section" style="background-image: url('images/copertina_4.jpg')">
+    <div id="hero" class="single-page section" style="background-image: url('resources/views/new_template/images/copertina_4.jpg')">
 
         <!-- Content -->
         <div class="container">
