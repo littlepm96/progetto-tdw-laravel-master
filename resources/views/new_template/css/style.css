@@ -287,7 +287,7 @@ header span {
 div[class^='col'],
 div[class^='container'] {
     background-repeat: no-repeat;
-    background-position: static;
+    background-position: unset;
 }
 
 .padding-80 {

@@ -22,9 +22,6 @@
                         <div class="col-md-10 col-md-offset-1">
                             <h1>{{$slide->title1}}</h1>
                             <h2>{{$slide->title2}}</h2>
-                            <a href="{{$slide->link}}" class="btn btn-default">
-                                <span>{{__('home_new.explore')}}</span>
-                            </a>
                         </div>
                     </div>
                 </div>
