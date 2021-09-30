@@ -22,6 +22,9 @@
                         <div class="col-md-10 col-md-offset-1">
                             <h1>{{$slide->title1}}</h1>
                             <h2>{{$slide->title2}}</h2>
+                            <a href="{{$slide->link}}" class="btn btn-default">
+                                <span>{{__('home_new.explore')}}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +46,7 @@
                     <a href="our_beers" class="btn btn-default"><span>{{__('home_new.show_more')}}</span></a>
                 </section>
             </div>
-            <div class="col-sm-6 matchHeight" style="background-image: url(../public/img/block-bg.jpg);">
+            <div class="col-sm-6 matchHeight" style="background-image: url(public/img/block-bg.jpg);">
                 <div class="row">
                     <div class="col-xs-6 icon-grid">
                         <img src="../public/img/Hops.svg" class="svg" alt="Quality Ingredients" />
@@ -71,7 +74,7 @@
     </div>
 
     <!-- Section -->
-    <div class="container-fluid light section" style="background-image: url(../public/img/block-bg-2.jpg);">
+    <div class="container-fluid light section" style="background-image: url(public/img/block-bg-2.jpg);">
         <div id="carousel-1" class="carousel slide carousel-fade bs-carousel" data-ride="carousel">
 
             <!-- Indicators -->
@@ -118,7 +121,7 @@
     </div>
 
     <!-- Section -->
-    <div class="container-fluid dark section" style="background-image: url(../public/img/block-bg-3.jpg);">
+    <div class="container-fluid dark section" style="background-image: url(public/img/block-bg-3.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5 matchHeight scrollme animateme" data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-75">

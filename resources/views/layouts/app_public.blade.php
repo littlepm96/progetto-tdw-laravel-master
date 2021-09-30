@@ -18,7 +18,6 @@
         <link href="{{ asset('css/public.css') }}" rel="stylesheet"/>
     </head>
     <body>
-    
         <header>
             <div class="container">
                 <div class="row top-part">

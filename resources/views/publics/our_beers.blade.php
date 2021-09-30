@@ -7,38 +7,22 @@
     <div class="container-fluid dark section no-padding">
         <div class="row">
             <div class="col-sm-3 col-xs-6 icon-grid">
-<<<<<<< HEAD
                 <img src="../resources/views/layouts/images/ambiente.png" class="svg" alt="Quality Ingredients"/>
-=======
-                <img src="images/Hops.svg" class="svg" alt="Quality Ingredients" />
->>>>>>> parent of 7fa5702 (un poco di foto)
                 <h4>All natural</h4>
                 <p>@isset($carousel) {{$carousel->text_container_1}} @endisset</p>
             </div>
             <div class="col-sm-3 col-xs-6 icon-grid">
-<<<<<<< HEAD
                 <img src="../resources/views/layouts/images/madeinuk.jpg" class="svg" alt="Quality Ingredients"/>
-=======
-                <img src="images/Mill.svg" class="svg" alt="Quality Ingredients" />
->>>>>>> parent of 7fa5702 (un poco di foto)
                 <h4>MAde in the UK</h4>
                 <p>@isset($carousel) {{$carousel->text_container_2}} @endisset</p>
             </div>
             <div class="col-sm-3 col-xs-6 icon-grid">
-<<<<<<< HEAD
                 <img src="../resources/views/layouts/images/collezione.png" class="svg" alt="Quality Ingredients"/>
-=======
-                <img src="images/3DSixPack.svg" class="svg" alt="Quality Ingredients" />
->>>>>>> parent of 7fa5702 (un poco di foto)
                 <h4>Huge variety</h4>
                 <p>@isset($carousel) {{$carousel->text_container_3}} @endisset</p>
             </div>
             <div class="col-sm-3 col-xs-6 icon-grid">
-<<<<<<< HEAD
                 <img src="../resources/views/layouts/images/locale.jpg" class="svg" alt="Quality Ingredients"/>
-=======
-                <img src="images/Pint.svg" class="svg" alt="Quality Ingredients" />
->>>>>>> parent of 7fa5702 (un poco di foto)
                 <h4>Stocked locally</h4>
                 <p>@isset($carousel) {{$carousel->text_container_4}} @endisset</p>
             </div>
@@ -61,7 +45,6 @@
                     <!-- Slide 2 -->
 
                         @php if ($active == 1) { @endphp
-<<<<<<< HEAD
                         <div class="item-active">
                             @php $active--; } else { @endphp
                             <div class="item">
@@ -84,26 +67,6 @@
                                             </section>
                                         </div>
                                     </div>
-=======
-                            <div class="item-active">
-                        @php $active--; } else { @endphp
-                                <div class="item">
-                                    @php } @endphp
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-5 matchHeight">
-                                    <img src="../public/img/copertina_4.jpg" alt="About our Brewery" class="alignMiddle" />
-                                </div>
-                                <div class="col-sm-6 col-sm-push-1 matchHeight">
-                                    <section class="alignMiddle mobile-center">
-                                        <header>
-                                            <h1>beer_type</h1>
-                                            <h2>{{$product->name}}</h2>
-                                        </header>
-                                        <p>{{$product->description}}</p>
-                                        <a href="{{$product->url}}" class="btn btn-default"><span>Go to shop</span></a>
-                                    </section>
->>>>>>> parent of 7fa5702 (un poco di foto)
                                 </div>
                             </div>
                             @endforeach
