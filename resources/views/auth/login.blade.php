@@ -15,15 +15,17 @@
                             {{ csrf_field() }}
                             <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
 
-                            <input id="email" type="email" placeholder="{{__('public_pages.email_addr')}}" class="email" name="email" value="{{ old('email') }}" required autofocus>
-                            @if ($errors->has('email'))
-                                <span class="help-block">
+                                <input id="email" type="email" placeholder="{{__('public_pages.email_addr')}}"
+                                       class="email" name="email" value="{{ old('email') }}" required autofocus>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
-                            @endif
+                                @endif
                             </div>
                             <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" type="password" placeholder="{{__('public_pages.password')}}" class="password" name="password" required>
+                                <input id="password" type="password" placeholder="{{__('public_pages.password')}}"
+                                       class="password" name="password" required>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -31,13 +33,15 @@
                                 @endif
                             </div>
 
-                            <a href="{{ lang_url('register') }}" class="btn btn-grey"><span>{{__('public_pages.register')}}</span></a>
+                            <a href="{{ lang_url('register') }}"
+                               class="btn btn-grey"><span>{{__('public_pages.register')}}</span></a>
 
                             <button type="submit" class="btn btn-primary">
                                 {{__('public_pages.login')}}
                             </button>
 
-                            <a href="{{ lang_url('password/reset') }}" class="lost-pass">{{__('public_pages.forgot')}}</a>
+                            <a href="{{ lang_url('password/reset') }}"
+                               class="lost-pass">{{__('public_pages.forgot')}}</a>
                         </form>
                     </div>
                 </div>
