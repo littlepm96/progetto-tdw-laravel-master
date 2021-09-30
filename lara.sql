@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Set 25, 2021 alle 17:41
--- Versione del server: 10.4.21-MariaDB
--- Versione PHP: 7.3.30
+-- Host: localhost:8889
+-- Creato il: Set 30, 2021 alle 15:28
+-- Versione del server: 5.7.34
+-- Versione PHP: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `lara`
 --
+CREATE DATABASE IF NOT EXISTS `lara` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `lara`;
 
 -- --------------------------------------------------------
 
@@ -41,8 +43,8 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`post_id`, `post_title`, `post_content`, `post_user_id`, `post_date`, `post_url`) VALUES
-(16, 'The new site', 'The new site is online!', 1, '2019-09-12', 'The-new-site'),
-(17, 'Oktoberfest', 'Oktoberfest is coming, stay updated on our site!', 1, '2019-09-12', 'Oktoberfest');
+(16, 'The new site', 'The new site is online!', 1, '2021-09-12', 'The-new-site'),
+(17, 'Oktoberfest', 'Oktoberfest is coming, stay updated on our site!', 1, '2021-09-12', 'Oktoberfest');
 
 -- --------------------------------------------------------
 
@@ -52,7 +54,7 @@ INSERT INTO `blog` (`post_id`, `post_title`, `post_content`, `post_user_id`, `po
 
 CREATE TABLE `carousel` (
   `id` int(11) NOT NULL,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -72,7 +74,7 @@ INSERT INTO `carousel` (`id`, `position`, `link`) VALUES
 
 CREATE TABLE `carousel_info` (
   `id` int(11) NOT NULL,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -83,7 +85,9 @@ CREATE TABLE `carousel_info` (
 INSERT INTO `carousel_info` (`id`, `position`, `link`) VALUES
 (1, 1, ''),
 (2, 1, ''),
-(3, 1, '');
+(3, 1, ''),
+(4, 1, ''),
+(5, 2, '');
 
 -- --------------------------------------------------------
 
@@ -129,8 +133,8 @@ CREATE TABLE `carousel_translations_info` (
 --
 
 INSERT INTO `carousel_translations_info` (`id`, `for_id`, `image`, `locale`, `title1`, `title2`, `text`) VALUES
-(1, 1, 'carousel_info/a6Ippr3j2eNOpKkEaIzHncn6EuUb3Ho2VGpLJzxx.jpeg', 'en', 'About our', 'Brewery', 'The 12-ounce bottle pours a pitch-black, topped with a creamy tan-colored head that leaves a healthy ringed lace as it settles, with a bit of stick on the glass.'),
-(2, 3, 'carousel_info/au00prI6MvOD5LbPj9wiMKcbU0bw2DjHBb1ahKyS.jpeg', 'en', 'Made to share with', 'Friends', 'A blend of lambic beers brewed at 3 Fonteinen, with an addition of 30% whole fresh raspberries from the fabled Payottenland and 5% sour cherries. This unfiltered beer will enjoy a spontaneous refermentation in the bottle. No artificial colors or flavor enhancers are added. Lambic is brewed only from 60% barley malt, 40% unmalted wheat, hops and water.');
+(3, 4, 'carousel_info/8AbY9ht6UJk7LLT2368ITCkZm5sFeRI2Kap0uShS.jpeg', 'en', 'About our', 'Brewery', 'The 12-ounce bottle pours a pitch-black, topped with a creamy tan-colored head that leaves a healthy ringed lace as it settles, with a bit of stick on the glass.'),
+(4, 5, 'carousel_info/WCtgEivGcCmZ6NjMS4l7CGpB5tOAMvlcPAo9g6wR.jpeg', 'en', 'Made to share with', 'Friends', 'A blend of lambic beers brewed at 3 Fonteinen, with an addition of 30% whole fresh raspberries from the fabled Payottenland and 5% sour cherries. This unfiltered beer will enjoy a spontaneous refermentation in the bottle. No artificial colors or flavor enhancers are added. Lambic is brewed only from 60% barley malt, 40% unmalted wheat, hops and water.');
 
 -- --------------------------------------------------------
 
@@ -247,8 +251,8 @@ CREATE TABLE `fast_orders` (
   `id` int(11) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `names` varchar(100) NOT NULL,
-  `time_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status` tinyint(4) NOT NULL DEFAULT 0
+  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -294,7 +298,8 @@ CREATE TABLE `img_user` (
 INSERT INTO `img_user` (`id_img_user`, `id_user`, `directory`) VALUES
 (1, 1, 'img_user/XqlJuB5WXp8UEfW8686rWFlRhuVrlt33BN00YYDa.png'),
 (2, 1, 'profile.png'),
-(3, 2, 'profile.png');
+(3, 2, 'profile.png'),
+(4, 3, 'profile.png');
 
 -- --------------------------------------------------------
 
@@ -317,10 +322,10 @@ CREATE TABLE `newsletters` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `time_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` varchar(30) NOT NULL,
   `products` varchar(255) NOT NULL COMMENT 'serialized array',
-  `status` tinyint(4) NOT NULL DEFAULT 0
+  `status` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -406,17 +411,17 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `folder` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `quantity` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `quantity` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   `link_to` varchar(255) DEFAULT NULL,
-  `order_position` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `procurements` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `order_position` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `procurements` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `tags` varchar(255) NOT NULL,
-  `hidden` tinyint(1) NOT NULL DEFAULT 0,
-  `our_beer` tinyint(1) NOT NULL DEFAULT 0
+  `hidden` tinyint(1) NOT NULL DEFAULT '0',
+  `our_beer` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -608,7 +613,7 @@ CREATE TABLE `support_message` (
   `id_ticket` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `text` text NOT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp()
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -633,7 +638,7 @@ CREATE TABLE `support_request` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `obj` varchar(150) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -667,10 +672,10 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `remember_token` varchar(255) DEFAULT NULL,
-  `isAdmin` tinyint(1) DEFAULT 0
+  `isAdmin` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -679,7 +684,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `updated_at`, `created_at`, `remember_token`, `isAdmin`) VALUES
 (1, 'Admin', 'admin@admin.admin', '$2y$10$lKcdQgqvk40/iQ3wIkH9ou/p30fhueK/WQmKuEAXYbU0yzRAONoX6', '2019-06-24 17:30:35', '2019-06-24 17:30:35', '7px3LqYOnjH7iiDny26072KDLkSP9PbQoI0EDgY7bhjduFlGoSnZBz6ksHiH', 1),
-(2, 'Andrea', 'andrea@andrea.andrea', '$2y$10$FJINWg4wQKfTn2G6WDx45eLfxGAGpGDRJjbww6vt3v5G7XDvYGmQG', '2021-09-25 10:34:46', '2021-09-25 10:34:46', 'i2Lvb8wt9rXhhXyDL6gNINqmXxnW3Ezakwe8XPupszCk2xmVz49jJfGEE1Se', 0);
+(2, 'Andrea', 'andrea@andrea.andrea', '$2y$10$FJINWg4wQKfTn2G6WDx45eLfxGAGpGDRJjbww6vt3v5G7XDvYGmQG', '2021-09-25 10:34:46', '2021-09-25 10:34:46', 'i2Lvb8wt9rXhhXyDL6gNINqmXxnW3Ezakwe8XPupszCk2xmVz49jJfGEE1Se', 0),
+(3, 'tizio', 'tizio@tizio.tizio', '$2y$10$jo7VK4PpKGMUhbcbre2S/uozS.KH9hM70FazSIHXwykNmWYia9oM2', '2021-09-25 14:14:54', '2021-09-25 14:14:54', NULL, 0);
 
 --
 -- Trigger `users`
@@ -955,7 +961,7 @@ ALTER TABLE `carousel`
 -- AUTO_INCREMENT per la tabella `carousel_info`
 --
 ALTER TABLE `carousel_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `carousel_translations`
@@ -967,7 +973,7 @@ ALTER TABLE `carousel_translations`
 -- AUTO_INCREMENT per la tabella `carousel_translations_info`
 --
 ALTER TABLE `carousel_translations_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `categories`
@@ -1009,7 +1015,7 @@ ALTER TABLE `fast_orders`
 -- AUTO_INCREMENT per la tabella `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `img_product`
@@ -1021,7 +1027,7 @@ ALTER TABLE `img_product`
 -- AUTO_INCREMENT per la tabella `img_user`
 --
 ALTER TABLE `img_user`
-  MODIFY `id_img_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_img_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `newsletters`
@@ -1123,7 +1129,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `user_address`
