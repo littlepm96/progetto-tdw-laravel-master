@@ -44,7 +44,6 @@
                         </ul>
                     </div>
                     <div class="col-sm-8">
-                        <h1>porcanna la madonna di dio</h1>
                         @if(!Auth::user())
                             <div class="finder">
                                 <a href="{{ lang_url('login') }}">
