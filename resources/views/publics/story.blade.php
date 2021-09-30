@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="history-logo">
-                        <img src="../public/img/loghetto.png" alt="Craft Beer HTML Template">
+                        <img src="../public/img/copertina_4.jpg" alt="Craft Beer HTML Template">
                     </div>
                     <div class="history">
                     @foreach($years as $year)
