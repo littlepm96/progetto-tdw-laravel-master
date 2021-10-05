@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <title>Beerify</title>
+    <title>Birrante</title>
     <link rel="icon" type="image/png" href="../public/img/wheat.png"/>
     <link href="{{ asset('new_template/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('new_template/css/fakeLoader.css')}}" rel="stylesheet">
@@ -57,6 +57,16 @@
                                 </a>
                             </div>
                         @endif
+
+
+                            <div class="finder">
+                                <a href="{{ lang_url('admin') }}">
+                                    <span class="fa"></span>
+                                    {{ __('Dashboard Admin') }}
+                                </a>
+                            </div>
+
+
                         <div class="finder">
                             <div class="dropdown">
                                 <button class="btn-lang" type="button" data-toggle="dropdown">

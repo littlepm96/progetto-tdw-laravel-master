@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <title>Beerify</title>
-    <link rel="icon" type="image/png" href="../public/img/wheat.png" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <title>Birrante</title>
+    <link rel="icon" type="image/png" href="../public/img/wheat.png"/>
     <link href="{{ asset('new_template/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('new_template/css/fakeLoader.css')}}" rel="stylesheet">
     <link href="{{ asset('new_template/css/owl-carousel.min.css')}}" rel="stylesheet">
@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700,800%7CGrand+Hotel" rel="stylesheet">
 
 
-    <!--[if IE 9]>
+<!--[if IE 9]>
     <link href="{{ asset('new_template/css/ie9.css')}}" rel="stylesheet">
     <![endif]-->
     <!--[if lt IE 9]>
@@ -59,6 +59,16 @@
                                 </a>
                             </div>
                         @endif
+
+
+                            <div class="finder">
+                                <a href="{{ lang_url('admin') }}">
+                                    <span class="fa"></span>
+                                    {{ __('Dashboard Admin') }}
+                                </a>
+                            </div>
+
+
                         <div class="finder">
                             <div class="dropdown">
                                 <button class="btn-lang" type="button" data-toggle="dropdown">
@@ -131,7 +141,7 @@
         </div>
     </div>
 
-    @yield('content')
+@yield('content')
 
 <!-- Footer -->
     <footer>
@@ -176,7 +186,8 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>2021 &copy; Unnamed Group @ univaq  /  <a href="http://www.klevermedia.co.uk">Web design by Klever media</a></p>
+                <p>2021 &copy; Unnamed Group @ univaq / <a href="http://www.klevermedia.co.uk">Web design by Klever
+                        media</a></p>
             </div>
         </div>
     </footer>
@@ -188,7 +199,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <h4>{{__('public_pages.success_add_to_cart')}}</h4>
