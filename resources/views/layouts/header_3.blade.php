@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <title>Beerify Story</title>
+    <title>Birrante Story</title>
     <link rel="icon" type="image/png" href="../public/img/wheat.png" />
     <link href="{{ asset('new_template/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('new_template/css/fakeLoader.css')}}" rel="stylesheet">
