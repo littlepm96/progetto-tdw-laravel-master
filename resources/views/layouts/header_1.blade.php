@@ -43,6 +43,7 @@
                             @endforeach
                         </ul>
                     </div>
+
                     <div class="col-sm-8">
                         @if(!Auth::user())
                             <div class="finder">
@@ -57,15 +58,6 @@
                                 </a>
                             </div>
                         @endif
-
-
-                        <div class="finder">
-                            <a href="{{ lang_url('admin') }}">
-                                <span class="fa"></span>
-                                {{ __('Dashboard Admin') }}
-                            </a>
-                        </div>
-
 
                         <div class="finder">
                             <div class="dropdown">

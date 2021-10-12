@@ -1,4 +1,4 @@
-@extends('layouts.header_3')
+@extends('layouts.header_1')
 @section('content')
 
     <!-- Section -->
@@ -8,7 +8,8 @@
             <!-- Indicators -->
             <ol class="carousel-indicators">
                 @foreach($slider as $slide)
-                    <li data-target="#carousel-1" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                    <li data-target="#carousel-1" data-slide-to="{{ $loop->index }}"
+                        class="{{ $loop->first ? 'active' : '' }}"></li>
                 @endforeach
             </ol>
 
@@ -20,7 +21,8 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-6 matchHeight">
-                                    <img src="{{asset('../storage/app/public/'.$slide->image)}}" alt="About our Brewery" class="alignMiddle" />
+                                    <img src="{{asset('../storage/app/public/'.$slide->image)}}" alt="About our Brewery"
+                                         class="alignMiddle"/>
                                 </div>
                                 <div class="col-sm-5 col-sm-push-1 matchHeight">
                                     <section class="alignMiddle mobile-center">
@@ -56,20 +58,21 @@
                         <img src="../public/img/copertina_4.jpg" alt="Craft Beer HTML Template">
                     </div>
                     <div class="history">
-                    @foreach($years as $year)
-                        <span class="date">{{ $year->year }}</span>
-                        @foreach($story as $s)
-                             @if($year->year ==  date('Y', strtotime($s->date)))
-                                    <article class="scrollme animateme" data-when="enter" data-from="0.75" data-to="0" data-opacity="0">
+                        @foreach($years as $year)
+                            <span class="date">{{ $year->year }}</span>
+                            @foreach($story as $s)
+                                @if($year->year ==  date('Y', strtotime($s->date)))
+                                    <article class="scrollme animateme" data-when="enter" data-from="0.75" data-to="0"
+                                             data-opacity="0">
                                         <header>
                                             <span>{{ date('d-m', strtotime($s->date)) }}</span>
                                             <h2>{{ $s->title }}</h2>
                                         </header>
                                         <p>{{ $s->text }}</p>
                                     </article>
-                             @endif
+                                @endif
+                            @endforeach
                         @endforeach
-                    @endforeach
                     </div>
                 </div>
             </div>
@@ -107,28 +110,28 @@
             <div class="row">
                 <div class="col-xs-6 col-sm-3">
                     <div class="counter">
-                        <img src=../public/new_template/images/Can.svg" class="svg" alt="" />
+                        <img src=../public/new_template/images/Can.svg" class="svg" alt=""/>
                         <span>{{ $info->flavours }}</span>
                         {{__('public_pages.flavours')}}
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="counter">
-                        <img src="../public/new_template/images/Sign.svg" class="svg" alt="" />
+                        <img src="../public/new_template/images/Sign.svg" class="svg" alt=""/>
                         <span class="one">{{ $info->outlets }}</span>
                         {{__('public_pages.outlets')}}
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="counter">
-                        <img src="../public/new_template/images/Badge.svg" class="svg" alt="" />
+                        <img src="../public/new_template/images/Badge.svg" class="svg" alt=""/>
                         <span>{{ $info->years }}</span>
                         {{__('public_pages.years_brewing')}}
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="counter">
-                        <img src="../public/new_template/images/BarrelSide.svg" class="svg" alt="" />
+                        <img src="../public/new_template/images/BarrelSide.svg" class="svg" alt=""/>
                         <span>{{ $info->day }}</span>
                         {{__('public_pages.days_ready')}}
                     </div>

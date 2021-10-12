@@ -60,15 +60,6 @@
                             </div>
                         @endif
 
-
-                        <div class="finder">
-                            <a href="{{ lang_url('admin') }}">
-                                <span class="fa"></span>
-                                {{ __('Dashboard Admin') }}
-                            </a>
-                        </div>
-
-
                         <div class="finder">
                             <div class="dropdown">
                                 <button class="btn-lang" type="button" data-toggle="dropdown">

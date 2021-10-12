@@ -54,14 +54,14 @@
                             </div>
                         @else
 
-
-                            <div class="finder">
-                                <a href="{{ lang_url('admin') }}">
-                                    <span class="fa"></span>
-                                    {{ __('Dashboard Admin') }}
-                                </a>
-                            </div>
-
+                            @if(Auth::user()->isAdmin==1)
+                                <div class="finder">
+                                    <a href="{{ lang_url('admin') }}">
+                                        <span class="fa"></span>
+                                        {{ __('Dashboard Admin') }}
+                                    </a>
+                                </div>
+                            @endif
 
                             <div class="finder">
                                 <a href="{{ lang_url('my_account') }}">

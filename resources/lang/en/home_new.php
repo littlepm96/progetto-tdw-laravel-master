@@ -16,7 +16,7 @@ return [
     'Unrivalled' => 'Unrivalled taste',
     'Unrivalled_text' => 'Claritas est etiam processus dynamicus, qui sequitur mutationem.',
     'learn' => 'Learn more',
-    'login' => 'Login / Sing Up',
+    'login' => 'Login / Sign Up',
     'logout' => 'Logout',
     'my_account' => 'My Account'
 ];
