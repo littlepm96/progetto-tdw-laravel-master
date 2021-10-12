@@ -32,13 +32,34 @@ class ProductsModel extends Model
                 ->paginate(12);
         return $products;
     }
+    public function getOneProduct($id)
+    {
+        /*echo '<script>console.log("Cerco nel DB")</script>';
+        echo "<script>console.log({$id})</script>";
+      */
+        $product = DB::table('products')
+                ->where('id', $id)
+                ->first();
+
+        $product_translations = DB::table('products_translations')
+                        ->where('for_id', $id)
+                        ->where('products_translations.locale', $this->defaultLang)
+                        ->first();
+        return [
+            'product' => $product,
+            'translations' => $product_translations
+        ];
+
+    }
+
 
     public function deleteProduct($id)
     {
         $this->id = $id;
         DB::transaction(function () {
-            DB::table('products')->where('id', $this->id)->delete();
             DB::table('products_translations')->where('for_id', $this->id)->delete();
+            DB::table('products')->where('id', $this->id)->delete();
+
         });
     }
 

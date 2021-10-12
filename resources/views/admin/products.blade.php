@@ -45,4 +45,63 @@
     @endphp
 </div>
 {{ $products->links() }}
+
+<!-- Modal Add/Edit products -->
+<div class="modal fade" id="modalAddEditProducts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{__('admin_pages.product_settings')}}</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="updateProduct()" id="formManagerProducts">
+                    {{ csrf_field() }}
+                    <div class="md-form">
+                        <i class="fa fa-product prefix grey-text"></i>
+                        <input type="text" name="quantity"
+                               value="{{$productInfo != null? $productInfo['product']->quantity: ''}}"
+                               id="defaultForm-quantity" class="form-control">
+                        <label for="defaultForm-quantity">Quantità</label>
+                    </div>
+                    <div class="md-form">
+                        <i class="fa fa-product prefix grey-text"></i>
+                        <input type="text" name="name"
+                               value="{{$productInfo != null? $productInfo['translations']->name: ''}}"
+                               id="defaultForm-name" class="form-control">
+                        <label for="defaultForm-name">Name</label>
+                    </div>
+                    <div class="md-form">
+                        <i class="fa fa-product prefix grey-text"></i>
+                        <input type="text" name="description"
+                               value="{{$productInfo != null? $productInfo['translations']->description: ''}}"
+                               id="defaultForm-description" class="form-control">
+                        <label for="defaultForm-name">Descrizione</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">{{__('admin_pages.close')}}</button>
+                <button type="button" class="btn btn-secondary"
+                        onclick="admin/removeProduct()">{{__('admin_pages.save_changes')}}</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        @php
+            if (isset($_GET['edit']))
+    {
+        @endphp
+        $(document).ready(function () {
+            $('#modalAddEditProducts').modal('show');
+        });
+        $("#modalAddEditProducts").on("hidden.bs.modal", function () {
+            window.location.href = "{{ lang_url('admin/products') }}";
+        });
+        @php
+            }
+        @endphp
+    </script>
 @endsection
