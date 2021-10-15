@@ -66,6 +66,7 @@ return [
     'edit_user' => 'Edit',
     'add_user' => 'Add user',
     'user_settings' => 'User settings',
+    'product_settings' => 'Product settings',
     'save_changes' => 'Save changes',
     'close' => 'Close',
     'user_password' => 'Password',
