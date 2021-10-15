@@ -22,9 +22,7 @@
                 <div class="card-footer">
                     <div class="text-center price">{{$product->price}}</div>
                     <span class="right">
-                        <a href="{{ lang_url('admin/edit/product/'.$product->id) }}" class="btn btn-secondary btn-sm">
-                            {{__('admin_pages.edit')}}
-                        </a>
+                        <a href="?edit={{$product->id}}" class="btn btn-sm btn-secondary waves-effect waves-light">{{__('admin_pages.edit_user')}}</a>
                         <a href="{{ lang_url('admin/delete/product/'.$product->id) }}" data-my-message="{{__('admin_pages.are_u_sure_delete')}}" class="btn btn-secondary btn-sm confirm">
                             {{__('admin_pages.delete')}}
                         </a>
@@ -92,14 +90,14 @@
     <script>
         @php
             if (isset($_GET['edit']))
-    {
+            {
         @endphp
-        $(document).ready(function () {
-            $('#modalAddEditProducts').modal('show');
-        });
-        $("#modalAddEditProducts").on("hidden.bs.modal", function () {
-            window.location.href = "{{ lang_url('admin/products') }}";
-        });
+                $(document).ready(function () {
+                  $('#modalAddEditProducts').modal('show');
+                 });
+                 $("#modalAddEditProducts").on("hidden.bs.modal", function () {
+                      window.location.href = "{{ lang_url('admin/products') }}";
+                });
         @php
             }
         @endphp
