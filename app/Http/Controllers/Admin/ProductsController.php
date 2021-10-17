@@ -29,13 +29,24 @@ class ProductsController extends Controller{
 }
 
     public function setProduct(Request $request){
-    $edit = $request->input('edit');
-    $productModel = new ProductsModel();
-    if ($edit > 0) {
-        $productModel->editProduct($request->all());
-        $msg = Lang::get('admin_pages.product_is_updated');
+        $edit = $request->input('edit');
+        $productModel = new ProductsModel();
+        if ($edit > 0) {
+            $productModel->editProduct($request->all());
+            $msg = Lang::get('admin_pages.product_is_updated');
+        }
+        return redirect(lang_url('admin/products'))->with(['msg' => $msg, 'result' => true]);
     }
-    return redirect(lang_url('admin/products'))->with(['msg' => $msg, 'result' => true]);
-}
+
+    public function deleteProduct(Request $request)
+    {
+        if (isset($request->number) && (int) $request->number > 0) {
+            $productsModel = new ProductsModel();
+            $productsModel->deleteProduct($request->number);
+            return redirect(lang_url('admin/products'))->with(['msg' => Lang::get('admin_pages.product_is_deleted'), 'result' => true]);
+        } else {
+            abort(404);
+        }
+    }
 
 }
