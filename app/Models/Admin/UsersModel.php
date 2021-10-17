@@ -54,7 +54,9 @@ class UsersModel extends Model
     public function deleteUser($id)
     {
         $this->id = $id;
+        DB::table('img_user')->where('id_user', $this->id)->delete();
         DB::table('users')->where('id', $this->id)->delete();
+
     }
 
 }
