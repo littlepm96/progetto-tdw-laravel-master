@@ -12,3 +12,4 @@ package-lock.json
 package-lock.json
 *.json
 package-lock.json
+.idea/php.xml
