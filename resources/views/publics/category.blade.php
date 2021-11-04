@@ -21,6 +21,7 @@
     </div>
 
     <!-- Category Section -->
+
     <div class="container-fluid light section no-padding">
         <div class="row">
             @forelse ($category as $category)
@@ -28,7 +29,7 @@
                     <div class="product">
                         <a href="{{ lang_url('category/'.$category->url) }}">
                             <span>Select category</span>
-                            <img src="../public/img/cash_on_deliv.png" alt="{{$category->name}}">
+                            <img src="../public/img/box.png" alt="{{$category->name}}">
                         </a>
                     </div>
                 </div>

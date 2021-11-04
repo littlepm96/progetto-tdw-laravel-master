@@ -95,7 +95,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a href="{{ lang_url('/home') }}" class="logo" title="">
-                    <img src="../public/img/logo.png" alt="Craft Beer HTML Template">
+                    <img src="../public/img/logo2.png" alt="Craft Beer HTML Template">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
