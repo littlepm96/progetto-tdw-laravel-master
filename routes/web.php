@@ -203,6 +203,12 @@ Route::middleware(['Admin'])->group(function () { // check for admin auth
     Route::get('admin/delete/product/{number}', 'Admin\\ProductsController@deleteProduct')->where('locale', implode('|', Config::get('app.locales')));
     Route::get('{locale}/admin/delete/product/{number}', 'Admin\\ProductsController@deleteProduct');
 //////////////
+    Route::post('admin/update/product/{number}', 'Admin\\ProductsController@updateProduct')->where('locale', implode('|', Config::get('app.locales')));
+    Route::post('{locale}/admin/update/product/{number}', 'Admin\\ProductsController@updateProduct');
+/////
+    Route::get('admin/update/product/{number}', 'Admin\\ProductsController@updateProduct')->where('locale', implode('|', Config::get('app.locales')));
+    Route::get('{locale}/admin/update/product/{number}', 'Admin\\ProductsController@updateProduct');
+////////////////
     Route::get('admin/delete/categories', 'Admin\\ProductsCategoryController@deleteCategories')->where('locale', implode('|', Config::get('app.locales')));
     Route::get('{locale}/admin/delete/categories', 'Admin\\ProductsCategoryController@deleteCategories');
 //////////////

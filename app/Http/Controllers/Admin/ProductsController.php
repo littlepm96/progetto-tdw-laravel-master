@@ -48,5 +48,17 @@ class ProductsController extends Controller{
             abort(404);
         }
     }
+    public function updateProduct(Request $request)
+    {
+        $edit = $request->input('edit2');
+        $productModel = new ProductsModel();
+        if ($edit > 0) {
+            $productModel->updateProduct($request->all());
+            $msg = Lang::get('admin_pages.user_is_updated');
+        }
+        $msg="Prodotto Aggiornato";
+        return redirect(lang_url('admin/products'))->with(['msg' => $msg, 'result' => true]);
+
+    }
 
 }

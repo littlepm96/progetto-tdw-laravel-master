@@ -1,5 +1,4 @@
 @extends('layouts.app_admin')
-
 @section('content')
 <div class="row">
     @php 
@@ -54,7 +53,8 @@
                 <h4 class="modal-title" id="myModalLabel">{{__('admin_pages.product_settings')}}</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" action="updateProduct()" id="formManagerProducts">
+                <input type="hidden" name="edit2" value="$productInfo['product']->id">
+                <form method="POST" action="" id="formManagerProducts">
                     {{ csrf_field() }}
                     <div class="md-form">
                         <i class="fa fa-product prefix grey-text"></i>
@@ -82,8 +82,12 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">{{__('admin_pages.close')}}</button>
-                <button type="button" class="btn btn-secondary"
-                        onclick="admin/removeProduct()">{{__('admin_pages.save_changes')}}</button>
+
+                <a href="{{ lang_url('admin/update/product/'.$product->id) }}" >
+                    <button  class="btn btn-secondary" onclick="{{ lang_url('admin/update/product/'.$product->id) }}">
+                        {{__('admin_pages.save_changes')}}</button>
+                </a>
+
             </div>
         </div>
     </div>
