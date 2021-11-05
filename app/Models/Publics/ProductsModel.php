@@ -17,19 +17,19 @@ class ProductsModel extends Model
         $search = $request->input('find');
         $order = $this->orderValidate($request);
         $products = DB::table('products')
-                ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
+            ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
                 products_translations.ml, products_translations.alchool, products_translations.quickdescription'))
-                ->orderBy($order['column'], $order['type'])
-                ->where('hidden', '=', 0)
-                ->where('locale', '=', app()->getLocale())
-                ->when($search, function ($query) use ($search) {
-                    return $query->where('products_translations.name', 'LIKE', "%$search%");
-                })
-                ->when($realCategoryId, function ($query) use ($realCategoryId) {
-                    return $query->where('products.category_id', $realCategoryId);
-                })
-                ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
-                ->paginate(12);
+            ->orderBy($order['column'], $order['type'])
+            ->where('hidden', '=', 0)
+            ->where('locale', '=', app()->getLocale())
+            ->when($search, function ($query) use ($search) {
+                return $query->where('products_translations.name', 'LIKE', "%$search%");
+            })
+            ->when($realCategoryId, function ($query) use ($realCategoryId) {
+                return $query->where('products.category_id', $realCategoryId);
+            })
+            ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
+            ->paginate(12);
         return $products;
     }
 
@@ -57,79 +57,79 @@ class ProductsModel extends Model
     public function getProduct($id)
     {
         $product = DB::table('products')
-                ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
+            ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
                 products_translations.ml, products_translations.alchool, products_translations.quickdescription, categories_translations.name as category_name'
-                                . ', (SELECT name FROM categories_translations WHERE for_id = products.category_id AND locale= "' . app()->getLocale() . '") as category_name'
-                                . ', (SELECT for_id FROM categories_translations WHERE for_id = products.category_id AND locale= "' . app()->getLocale() . '") as category_id'
-                                . ', (SELECT url FROM categories WHERE id = products.category_id) as category_url'))
-                ->where('products.id', '=', $id)
-                ->where('products_translations.locale', '=', app()->getLocale())
-                ->join ('categories', 'products.category_id', 'categories.id')
-                ->join ('categories_translations', 'categories.id', 'categories_translations.for_id')
-                ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
-                ->first();
+                . ', (SELECT name FROM categories_translations WHERE for_id = products.category_id AND locale= "' . app()->getLocale() . '") as category_name'
+                . ', (SELECT for_id FROM categories_translations WHERE for_id = products.category_id AND locale= "' . app()->getLocale() . '") as category_id'
+                . ', (SELECT url FROM categories WHERE id = products.category_id) as category_url'))
+            ->where('products.id', '=', $id)
+            ->where('products_translations.locale', '=', app()->getLocale())
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->join('categories_translations', 'categories.id', 'categories_translations.for_id')
+            ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
+            ->first();
         return $product;
     }
 
     public function getProductsWithTag($tag)
     {
         $products = DB::table('products')
-                ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
+            ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
                 products_translations.ml, products_translations.alchool, products_translations.quickdescription'))
-                ->where('tags', 'LIKE', '%'.$tag.'%')
-                ->where('hidden', '=', 0)
-                ->where('locale', '=', app()->getLocale())
-                ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
-                ->limit(8)
-                ->get();
+            ->where('tags', 'LIKE', '%' . $tag . '%')
+            ->where('hidden', '=', 0)
+            ->where('locale', '=', app()->getLocale())
+            ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
+            ->limit(8)
+            ->get();
         return $products;
     }
 
     public function getMostSelledProducts()
     {
         $products = DB::table('products')
-                ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
+            ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
                 products_translations.ml, products_translations.alchool, products_translations.quickdescription'))
-                ->where('hidden', '=', 0)
-                ->where('locale', '=', app()->getLocale())
-                ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
-                ->orderBy('procurements', 'desc')
-                ->limit(8)
-                ->get();
+            ->where('hidden', '=', 0)
+            ->where('locale', '=', app()->getLocale())
+            ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
+            ->orderBy('procurements', 'desc')
+            ->limit(8)
+            ->get();
         return $products;
     }
 
     public function getProductsWithIds($ids)
     {
         $products = DB::table('products')
-                        ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
+            ->select(DB::raw('products.*, products_translations.name, products_translations.description, products_translations.price,
                         products_translations.ml, products_translations.alchool, products_translations.quickdescription'))
-                        ->where('hidden', '=', 0)
-                        ->whereIn('products.id', $ids)
-                        ->where('locale', '=', app()->getLocale())
-                        ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
-                        ->get()->toArray();
+            ->where('hidden', '=', 0)
+            ->whereIn('products.id', $ids)
+            ->where('locale', '=', app()->getLocale())
+            ->join('products_translations', 'products_translations.for_id', '=', 'products.id')
+            ->get()->toArray();
         return $products;
     }
 
     public function getCategories()
     {
         $categories = DB::table('categories')
-                        ->select(DB::raw('categories.*, categories_translations.name'))
-                        ->where('locale', '=', app()->getLocale())
-                        ->orderBy('position', 'desc')
-                        ->join('categories_translations', 'categories_translations.for_id', '=', 'categories.id')
-                        ->get()->toArray();
+            ->select(DB::raw('categories.*, categories_translations.name'))
+            ->where('locale', '=', app()->getLocale())
+            ->orderBy('position', 'desc')
+            ->join('categories_translations', 'categories_translations.for_id', '=', 'categories.id')
+            ->get()->toArray();
         return $categories;
     }
 
     public function getCategoryName($url)
     {
         return DB::table('categories')
-                        ->where('locale', '=', app()->getLocale())
-                        ->join('categories_translations', 'categories_translations.for_id', '=', 'categories.id')
-                        ->where('url', $url)
-                        ->pluck('name')->toArray();
+            ->where('locale', '=', app()->getLocale())
+            ->join('categories_translations', 'categories_translations.for_id', '=', 'categories.id')
+            ->where('url', $url)
+            ->pluck('name')->toArray();
     }
 
     public function getProducers($id)
@@ -140,7 +140,8 @@ class ProductsModel extends Model
             ->get()->toArray();
     }
 
-    public function getFavoriteProducts($user_id) {
+    public function getFavoriteProducts($user_id)
+    {
         return DB::table('favorites')
             ->join('products', 'favorites.id_product', '=', 'products.id')
             ->join('products_translations', 'products.id', '=', 'products_translations.for_id')
