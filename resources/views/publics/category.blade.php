@@ -1,4 +1,4 @@
-@extends('layouts.header_2')
+@extends('layouts.header_1')
 
 <!-- Dynamic content of the website-->
 @section('content')
