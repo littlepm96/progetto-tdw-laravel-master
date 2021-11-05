@@ -1,4 +1,4 @@
-@extends('layouts.header_3')
+@extends('layouts.header_2')
 @section('content')
     <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" />
     <div class="container-fluid section no-padding">

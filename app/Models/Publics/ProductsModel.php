@@ -113,7 +113,7 @@ class ProductsModel extends Model
     }
 
     public function getCategories()
-    {
+    {//category.name
         $categories = DB::table('categories')
             ->select(DB::raw('categories.*, categories_translations.name'))
             ->where('locale', '=', app()->getLocale())

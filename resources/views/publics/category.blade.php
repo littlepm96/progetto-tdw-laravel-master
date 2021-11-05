@@ -1,4 +1,4 @@
-@extends('layouts.header_1')
+@extends('layouts.header_2')
 
 <!-- Dynamic content of the website-->
 @section('content')
@@ -28,7 +28,7 @@
                 <div class="col-sm-4 product-wrapper">
                     <div class="product">
                         <a href="{{ lang_url('category/'.$category->url) }}">
-                            <span>Select category</span>
+                            <span>{{$category->name}}</span>
                             <img src="../public/img/box.png" alt="{{$category->name}}">
                         </a>
                     </div>
